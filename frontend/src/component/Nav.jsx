@@ -15,7 +15,7 @@ import { MdOutlineShoppingCart } from 'react-icons/md';
 import { userDataContext } from '../context/UserContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { authDataContext } from '../context/authContext';
+import { authDataContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 import { shopDataContext } from '../context/ShopContext';
 
