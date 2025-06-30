@@ -6,7 +6,7 @@ import {
   FaMapMarkerAlt, FaMoneyBillAlt, FaTruck,
   FaShoppingBag, FaCalendarAlt
 } from 'react-icons/fa';
-import { authDataContext } from '../context/authContext';
+import { authDataContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
 function PlaceOrder() {
