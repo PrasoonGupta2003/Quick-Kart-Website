@@ -128,6 +128,10 @@ function Nav() {
                     navigate('/about');
                     setShowProfile(false);
                   }}>About</li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => {
+                    window.open('https://quick-kart-website-admin.onrender.com', '_blank');
+                    setShowProfile(false);
+                  }}>Admin Mode</li>
                   <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-red-600" onClick={logoutHandler}>Logout</li>
                 </>
               )}
