@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(
     {
-        origin: ["https://quick-kart-website.onrender.com","http://localhost:5174"],
+        origin: ["https://quick-kart-website.onrender.com","https://quick-kart-website-admin.onrender.com"],
         credentials: true
     }
 ));
