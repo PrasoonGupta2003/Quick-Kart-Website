@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { shopDataContext } from '../context/ShopContext';
 import axios from 'axios';
 import { FaTruck, FaCheckCircle, FaRupeeSign, FaTimesCircle } from 'react-icons/fa';
-import { authDataContext } from '../context/authContext';
+import { authDataContext } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
 function Orders() {
