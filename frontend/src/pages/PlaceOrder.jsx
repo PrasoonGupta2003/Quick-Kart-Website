@@ -21,7 +21,10 @@ function PlaceOrder() {
   });
 
   const [error, setError] = useState('');
-  const amount = getCartAmount();
+  const baseAmount = getCartAmount();
+  const delivery_fee = baseAmount < 1000 ? 40 : 0;
+  const amount = baseAmount + delivery_fee;
+
   const estimatedDate = new Date(Date.now() + 3 * 86400000).toLocaleDateString('en-IN', {
     weekday: 'short', month: 'short', day: 'numeric'
   });
@@ -90,13 +93,14 @@ function PlaceOrder() {
 
   try {
     const res = await axios.post(serverUrl + '/api/order/placeorder', {
-      items: getItemsList(),
-      amount,
-      address,
-      paymentMethod: 'COD',
-      payment: false,
-      date: Date.now(),
-    }, { withCredentials: true });
+    items: getItemsList(),
+    amount,
+    deliveryFee: delivery_fee,
+    address,
+    paymentMethod: 'COD',
+    payment: false,
+    date: Date.now(),
+  }, { withCredentials: true });
 
     Swal.fire({
       icon: 'success',
@@ -167,9 +171,19 @@ function PlaceOrder() {
             <FaTruck /> Order Summary
           </h3>
 
-          <div className="text-lg font-bold mb-2 text-gray-800">
-            Total: {currency}{amount}
-          </div>
+          <div className="mb-1 flex justify-between text-gray-700 text-sm">
+          <span>Items Total:</span>
+          <span>{currency}{baseAmount}</span>
+        </div>
+        <div className="mb-3 flex justify-between text-gray-700 text-sm">
+          <span>Delivery Fee:</span>
+          <span>{delivery_fee > 0 ? `${currency}${delivery_fee}` : 'Free'}</span>
+        </div>
+        <div className="text-lg font-bold text-gray-800 border-t pt-2 flex justify-between">
+          <span>Total Payable:</span>
+          <span>{currency}{amount}</span>
+        </div>
+
 
           <div className="flex items-center gap-2 text-sm text-green-600 mb-4">
             <FaCalendarAlt className="text-base" />
@@ -177,7 +191,7 @@ function PlaceOrder() {
           </div>
 
           <p className="text-sm text-gray-500 mb-4">
-            ✅ Free delivery on COD orders. Fast, safe and contactless.
+            ✅ Free delivery on COD orders above 1000. Fast, safe and contactless.
           </p>
 
           <button
