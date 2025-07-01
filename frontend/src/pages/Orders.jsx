@@ -136,51 +136,54 @@ function Orders() {
               </div>
 
               {/* Summary & Delivery */}
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-t pt-4 text-sm text-gray-600">
-                <div className="flex items-center gap-2 mb-2 sm:mb-0">
-                  <FaTruck className="text-lg" />
-                  {!isDelivered ? (
-                    <span>Estimated delivery: {estDateStr}</span>
-                  ) : (
-                    <>
-                      <span className="line-through">Est: {estDateStr}</span>
-                      <span className="text-green-800 font-semibold">Delivered on: {updatedStr}</span>
-                    </>
-                  )}
-                </div>
-                <div className="flex items-center gap-2">
-                  <FaRupeeSign />
-                  <span className="font-semibold">{currency}{order.amount}</span>
-                  <span className="text-gray-500">via {order.paymentMethod}</span>
+              <div className="border-t pt-4 text-sm text-gray-600">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                  <div className="flex items-center gap-2 mb-2 sm:mb-0">
+                    <FaTruck className="text-lg" />
+                    {!isDelivered ? (
+                      <span>Estimated delivery: {estDateStr}</span>
+                    ) : (
+                      <>
+                        <span className="line-through">Est: {estDateStr}</span>
+                        <span className="text-green-800 font-semibold">Delivered on: {updatedStr}</span>
+                      </>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FaRupeeSign />
+                    <span className="font-semibold">{currency}{order.amount}</span>
+                    <span className="text-gray-500">via {order.paymentMethod}</span>
+                  </div>
                 </div>
 
-              {/* Delivered Snapshot */}
-              {isDelivered && (
-                <div className="flex items-center gap-2 text-green-700 text-sm mt-2">
-                  <FaCheckCircle />
-                  <span>Delivered! Hope you're enjoying it 😊</span>
-                </div>
-              )}
+                {/* Delivered Snapshot */}
+                {isDelivered && (
+                  <div className="flex items-center gap-2 text-green-700 text-sm mt-2">
+                    <FaCheckCircle />
+                    <span>Delivered! Hope you're enjoying it 😊</span>
+                  </div>
+                )}
 
-              {/* Cancelled Snapshot */}
-              {isCancelled && (
-                <div className="flex items-center gap-2 text-red-700 text-sm mt-2">
-                  <FaTimesCircle />
-                  <span>Your order was cancelled.</span>
-                </div>
-              )}
+                {/* Cancelled Snapshot */}
+                {isCancelled && (
+                  <div className="flex items-center gap-2 text-red-700 text-sm mt-2">
+                    <FaTimesCircle />
+                    <span>Your order was cancelled.</span>
+                  </div>
+                )}
 
-              {/* Cancel Button */}
-              {!isDelivered && !isCancelled && (
-                <div className="text-right">
-                  <button
-                    onClick={() => cancelOrder(order._id)}
-                    className="mt-4 inline-block px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md"
-                  >
-                    Cancel Order
-                  </button>
-                </div>
-              )}
+                {/* Cancel Button */}
+                {!isDelivered && !isCancelled && (
+                  <div className="text-right mt-4">
+                    <button
+                      onClick={() => cancelOrder(order._id)}
+                      className="inline-block px-4 py-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-md"
+                    >
+                      Cancel Order
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           );
         })}
@@ -190,3 +193,4 @@ function Orders() {
 }
 
 export default Orders;
+
