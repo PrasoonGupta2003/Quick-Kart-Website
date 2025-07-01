@@ -137,6 +137,15 @@ function Nav() {
               )}
             </ul>
           )}
+          
+            {userData && (
+            <button
+              onClick={() => navigate('/orders')}
+              className="hidden md:inline-block bg-black text-white px-4 py-1.5 rounded-full text-sm font-medium hover:bg-gray-900 transition"
+            >
+              Orders
+            </button>
+          )}
 
           {/* Cart Icon */}
           <div className="relative cursor-pointer hover:scale-105 transition-transform duration-200" onClick={() => navigate('/cart')}>
