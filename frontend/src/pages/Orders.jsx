@@ -148,11 +148,18 @@ function Orders() {
                     </>
                   )}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-sm">
+                <div className="flex items-center gap-1">
                   <FaRupeeSign />
-                  <span className="font-semibold">{currency}{order.amount}</span>
-                  <span className="text-gray-500">via {order.paymentMethod}</span>
+                  <span className="font-semibold">
+                    {currency}
+                    {order.amount < 1000 ? order.amount + 40 : order.amount}
+                  </span>
                 </div>
+                <span className="text-gray-500">
+                  (Includes {order.amount < 1000 ? `₹${delivery_fee} Delivery Fee` : 'Free Delivery'}) via {order.paymentMethod}
+                </span>
+              </div>
               </div>
 
               {/* Delivered Snapshot */}
